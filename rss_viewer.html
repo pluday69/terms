@@ -12,6 +12,7 @@
         fetch('https://uknows.kro.kr/rss/rss_data.json')
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 const list = document.getElementById('rss-list');
                 data.forEach(item => {
                     const li = document.createElement('li');
