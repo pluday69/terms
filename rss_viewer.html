@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>RSS 제목 목록</title>
+</head>
+<body>
+    <h1>RSS 제목 목록</h1>
+    <ul id="rss-list"></ul>
+
+    <script>
+        fetch('https://uknows.kro.kr/rss_data.json')
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('rss-list');
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a> (${item.pubDate})`;
+                    list.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error loading RSS data:', error));
+    </script>
+</body>
+</html>
